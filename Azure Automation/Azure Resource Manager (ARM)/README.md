@@ -38,6 +38,8 @@ For more information , you can see:
 
     You must create at least one Automation account. You can create multiple automation accounts to segregate your automation assets. For example, you might use one account for development, another for production, and another for your on-premises environment. You can have up to 30 automation accounts.
 
+ 2. Automation Security:
+
     You can use role assignments to manage access to your Azure subscription resources. With Role-based access control (RBAC) you can limit both the scope (resources) and the permissions (roles) that users are given. For controlling access to automation resources you will use these roles.
 
     - Owner
@@ -53,6 +55,8 @@ For more information , you can see:
     - Resource Policy Contributor
     - User Access Administrator
 
+ 3. Runbook Assets:
+
     Azure automation assets are resources (settings) that are globally available to be used in or associated with a runbook. There are currently six asset categories: 
     - Schedules: used to schedule runbooks to run automatically. This could be either a single date and time for the runbook to run once, or it could be a recurring schedule to start the runbook multiple times. A runbook can be linked to multiple schedules, and a schedule can have multiple runbooks linked to it.
     - Modules: A PowerShell module is a set of related Windows PowerShell functionalities, grouped together as a convenient unit. PowerShell modules can be imported as needed, and are often installed with a particular feature. For example, if you add the Active Directory role to your server, the Active Directory PowerShell module with all the associated cmdlets will also be installed. An Azure module asset isn't very different from a PowerShell module. It's simply a PowerShell module that optionally contains one additional file - a metadata file specifying an Azure Automation connection type to be used with the module. For example, email modules typically include a connection type. Azure module assets can be imported to make their cmdlets available for use within runbooks and DSC configurations. Certain module assets are shipped as “global module assets” in the Automation service. These global modules are available to you when you create an automation account. Notice in the graphic Azure.Storage, AzureRM.Automation, and AzureRM.Compute. You can add additional modules by browsing the gallery.
@@ -63,7 +67,7 @@ For more information , you can see:
 
     For more information , you can see: [Azure Automation](https://aka.ms/edx-azure210x-az4)
 
-2. Runbook
+    Runbook:
 
     Runbooks deliver the core functionality of Azure Automation by serving as containers for your custom scripts and workflows. In addition, runbooks typically reference Automation assets, such as credentials, variables, connections, and certificates. They also can contain other runbooks, thereby allowing you to build more complex workflows. You can invoke and run runbooks either on demand or according to your chosen schedule by leveraging Automation Schedule assets.
 
@@ -101,7 +105,7 @@ For more information , you can see:
 
     A webhook can define values for runbook parameters that are used when the runbook is started by that webhook. The webhook must include values for any mandatory parameters of the runbook and may include values for optional parameters.
 
-    PowerShell Workflow:
+ 4. PowerShell Workflow:
 
     A Windows PowerShell workflow is a sequence of programmed, connected steps that perform long-running tasks or require the coordination of multiple steps across multiple devices or managed nodes. Workflows lets IT pros and developers author sequences of multi-device management activities, or single tasks within a workflow, as workflows. By design, workflows can be long-running, repeatable, frequent, parallelizable, interruptible, stoppable, and restartable. They can be suspended and resumed; they can also continue after an unexpected interruption, such as a network outage or computer restart. There are many benefits to using workflows.
 
@@ -117,7 +121,7 @@ For more information , you can see:
 
     To write the workflow, use a script editor, such as the Windows PowerShell Integrated Scripting Environment (ISE), that enforces workflow syntax and highlights syntax errors. The syntactic differences between scripts and workflows are significant, so a tool that knows workflows, as well as scripts, will save you significant coding and testing time.
 
-Begin with the workflow keyword, which identifies a workflow command to Windows PowerShell. The workflow keyword is required in a script workflow. The name of the workflow follows the workflow keyword. The body of the workflow is enclosed in braces. A workflow is a Windows PowerShell command type. Select a name with a verb-noun format.
+    Begin with the workflow keyword, which identifies a workflow command to Windows PowerShell. The workflow keyword is required in a script workflow. The name of the workflow follows the workflow keyword. The body of the workflow is enclosed in braces. A workflow is a Windows PowerShell command type. Select a name with a verb-noun format.
 
 ```json
 		workflow Test-Workflow
@@ -127,7 +131,7 @@ Begin with the workflow keyword, which identifies a workflow command to Windows 
 		}
 ```
 
-To add parameters to a workflow, use the Param keyword. These are the same techniques that you use to add parameters to a function. Lastly, simply add your standard PowerShell commands.
+    To add parameters to a workflow, use the Param keyword. These are the same techniques that you use to add parameters to a function. Lastly, simply add your standard PowerShell commands.
 
 ```json
 		workflow MyFirstRunbook-Workflow
@@ -174,7 +178,7 @@ To add parameters to a workflow, use the Param keyword. These are the same techn
 		}
 ```
 
-3. ARM Template
+5. ARM Template
 
     An ARM template consists of JSON and expressions which you can use to construct values for your deployment. You must limit the size your template to 1 MB, and each parameter file to 64 KB. The 1 MB limit applies to the final state of the template after it has been expanded with iterative resource definitions, and values for variables and parameters.
 
