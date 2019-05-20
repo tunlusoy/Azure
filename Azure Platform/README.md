@@ -50,9 +50,9 @@
     You can also deploy your templates with PowerShell. To deploy a local template, you can use the TemplateFile parameter:
 
 ```Powershell
-        New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathToTemplate>
+    New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathToTemplate>
 
-        New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -myParameterName "parameterValue"
+    New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -myParameterName "parameterValue"
 ```
 
     - [GitHub Resource Manager QuickStart Templates](https://github.com/Azure/azure-quickstart-templates)
