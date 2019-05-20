@@ -142,6 +142,38 @@ To add parameters to a workflow, use the Param keyword. These are the same techn
 		}
 ```
 
+    Checkpoints and Parallel Processing:
+
+    Workflows let you implement complex logic within your code. Two unique features of workflows are checkpoints and parallel processing.
+
+    Checkpoints
+
+    A checkpoint is a snapshot of the current state of the workflow that includes the current value for variables and any output generated to that point. If a workflow ends in error or is suspended, then the next time it is run it will start from its last checkpoint instead of the start of the workflow.
+
+    Checkpoints are especially useful for long running runbooks. Azure will unload a workbook (fairshare feature) after three hours so other runbooks can run. Eventually, the system will reload the runbook and resume execution from the last checkpoint. If you don’t add any checkpoints, then the runbook will resume from the beginning, and of course it will run into the fairshare limit again; this will happen over and over, and the runbook will never finish.
+
+    You can set a checkpoint in a workflow with the Checkpoint-Workflow activity. For example, in the following sample code, if an exception occurs after Activity2 the workflow will end. When the workflow is run again, it starts with Activity2 since this was just after the last checkpoint set.
+
+```
+		<Activity1>
+		  Checkpoint-Workflow
+		<Activity2>
+		<Exception>
+		<Activity3>
+```
+
+    **Parallel processing**
+
+    A Parallel script block has multiple commands that will run concurrently instead of sequentially as with a typical script. In the following example, two VMs will be started concurrently.
+
+```Powershell
+		Parallel
+		{
+		  Start-AzureRmVM -Name $vm0 -ResourceGroupName $rg
+		  Start-AzureRmVM -Name $vm1 -ResourceGroupName $rg
+		}
+```
+
 3. ARM Template
 
     An ARM template consists of JSON and expressions which you can use to construct values for your deployment. You must limit the size your template to 1 MB, and each parameter file to 64 KB. The 1 MB limit applies to the final state of the template after it has been expanded with iterative resource definitions, and values for variables and parameters.
